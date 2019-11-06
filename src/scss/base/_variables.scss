@@ -1,0 +1,34 @@
+
+//SCSS map used for building responsive utility classes
+$breakpoints: (
+  'sm': 576px,
+  'md': 577px,
+  'lg': 769px,
+  'xl': 993px,
+  'xxl': 1200px
+);
+
+
+//global variables
+:root {
+    //Body font size
+    --body-font-size: 16px;
+
+    //Body font family
+    --font-family-regular: 'Monda', sans-serif;
+
+    //Spacer for margin and padding
+    --spacer: var(--body-font-size);
+
+    //Breakpoints for media queries 
+    --sm: map-get($breakpoints, 'sm');
+    --md: map-get($breakpoints, 'md');
+    --lg: map-get($breakpoints, 'lg');
+    --xl: map-get($breakpoints, 'xl');
+    --xxl: map-get($breakpoints, 'xxl');
+
+    //Colors
+    --black: black;
+    --white: white;
+}
+

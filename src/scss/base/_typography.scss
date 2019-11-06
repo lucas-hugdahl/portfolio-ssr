@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Monda:400,700&display=swap');
+
+
+body,html {
+  font-family: 'Monda', sans-serif;;
+  font-size: var(--body-font-size);
+}
+
+p {
+  line-height: 2em;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+  font-weight: 400;
+}
