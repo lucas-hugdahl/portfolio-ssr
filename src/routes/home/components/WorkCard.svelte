@@ -22,56 +22,46 @@
       "skills  skills";
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 16rem 50px 50px;
-
-    .image {
-      grid-area: image;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .logo, .name {
-      grid-area: company;
-      align-self: center;
-    }
-
-    .skill, .logo {
-      height: 25px;
-    }
-
-    .skills {
-      grid-area: skills;
-      align-self: center;
-      display: grid;
-      grid-auto-flow: column;
-      align-items: center;
-      justify-content: start;
-    }
-
-    &:hover {
-      transform: translateY(-10px);
-      cursor: pointer;
-    }
-    &:active {
-      color: inherit;
-    }
-
-    &.aos-animate {
-      overflow: hidden;
-    }
-
+    
+    
     @media (min-width: map-get($breakpoints, lg)) {
       grid-template-rows: 23rem 50px;
       grid-template-areas:
       "image   image"
       "company  skills";
-      
-      .logo {
-        height: 25px;
-      }
+    }
+  }
 
-      .skills {
-        justify-content: end;
-      }
+  .grid:hover {
+    transform: translateY(-10px);
+    cursor: pointer;
+  }
+
+  .image {
+    grid-area: image;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .logo, .name {
+    grid-area: company;
+    align-self: center;
+  }
+
+
+  .skill, .logo {
+    height: 25px;
+  }
+
+  .skills {
+    grid-area: skills;
+    align-self: center;
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: start;
+    @media (min-width: map-get($breakpoints, lg)) {
+      justify-content: end;
     }
   }
 </style>

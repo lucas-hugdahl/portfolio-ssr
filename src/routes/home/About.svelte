@@ -1,9 +1,5 @@
 <style type="text/scss">
   .about {
-    &__bio {
-      font-weight: 400;
-      opacity: .9;
-    }
 
     &__cta {
       border: 1px solid white;

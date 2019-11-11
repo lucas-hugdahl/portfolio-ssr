@@ -6,9 +6,10 @@ import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
+// import autoPreprocess from 'svelte-preprocess';
 import autoPreprocess from 'svelte-preprocess';
-import scss from 'rollup-plugin-scss';
-import alias from '@rollup/plugin-alias';
+import scss from 'rollup-plugin-scss'
+
 
 
 const mode = process.env.NODE_ENV;
@@ -17,6 +18,10 @@ const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
 const onwarn = (warning, onwarn) => (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) || onwarn(warning);
 const dedupe = importee => importee === 'svelte' || importee.startsWith('svelte/');
+
+
+console.log("ENV",  config.client.output().dir);
+console.log("ENV",  config.server.output().dir);
 
 export default {
 	client: {
@@ -31,24 +36,19 @@ export default {
 				dev,
 				hydratable: true,
 				emitCss: true,
+				css: css => {
+					css.write('static/bundle.css');
+				},
 				preprocess: autoPreprocess()
-			}),
-			alias({ 
-				resolve: ['.svelte'],
-				entries: {
-					'@': './src',
-					'variables': './src/scss/base/variables.scss',
-				}
 			}),
 			resolve({
 				browser: true,
 				dedupe
 			}),
-			commonjs(),
 			scss({
 				output: 'static/vendors.css',
 			}),
-
+			commonjs(),
 			legacy && babel({
 				extensions: ['.js', '.mjs', '.html', '.svelte'],
 				runtimeHelpers: true,
@@ -70,7 +70,6 @@ export default {
 				module: true
 			})
 		],
-
 		onwarn,
 	},
 
@@ -85,17 +84,13 @@ export default {
 			svelte({
 				generate: 'ssr',
 				dev,
+				css: css => {
+					css.write('static/bundle.css');
+				},
 				preprocess: autoPreprocess()
 			}),
 			scss({
 				output: 'static/vendors.css',
-			}),
-			alias({ 
-				resolve: ['.svelte'],
-				entries: {
-					'@': './src',
-					'variables': './src/scss/base/variables.scss',
-				}
 			}),
 			resolve({
 				dedupe
